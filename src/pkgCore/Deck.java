@@ -1,6 +1,7 @@
 package pkgCore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import pkgEnum.eRank;
@@ -11,7 +12,7 @@ public class Deck {
 
 	private ArrayList<Card> cardsInDeck = new ArrayList<Card>();
 
-	public Deck() {
+	public Deck(ArrayList<Card> cardsInDeck2) {
 		for (eSuit eSuit : eSuit.values()) {
 			for (eRank eRank : eRank.values()) {
 				cardsInDeck.add(new Card(eSuit, eRank));
@@ -43,5 +44,26 @@ public class Deck {
 	public int getiDeckCount()
 	{
 		return cardsInDeck.size();
+	}
+	
+	public int getRemaining(Object eNum) {
+		int counter = 0;
+		if (eNum instanceof eSuit) {
+			 eSuit suit = (eSuit) eNum;
+			 for (Card c : cardsInDeck) {
+				 if (c.geteSuit() == suit) {
+					 counter += 1;
+				 } 
+			 }
+		   }
+		if (eNum instanceof eRank) {
+			eRank rank = (eRank) eNum;
+			for (Card c : cardsInDeck) {
+				if (c.geteRank() == rank) {
+					counter +=1;
+				}
+			}
+		}
+		return counter;
 	}
 }
